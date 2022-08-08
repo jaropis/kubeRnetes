@@ -6,8 +6,8 @@ RUN apt-get update \
     libz-dev \
     libgit2-dev \
     tar
-COPY . /plumber/
+COPY . /kubeRnetes/
 RUN R -e "install.packages('plumber')"
 EXPOSE 8000
 
-CMD ["R", "-e", "source('/plumber/run_server.R')"]
+CMD ["R", "-e", "source('/kubeRnetes/plumber/run_server.R')"]

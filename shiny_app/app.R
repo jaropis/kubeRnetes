@@ -7,7 +7,9 @@ ui <- fluidPage(
     # Application title
     titlePanel("Histogram"),
     actionButton(inputId = "refresh_data", label = "Refresh data"),
-    plotOutput("histPlot")
+    verbatimTextOutput("tekscior"),
+    verbatimTextOutput("tekscior2")#,
+    #plotOutput("histPlot")
 )
 
 # Define server logic required to draw a histogram
@@ -17,9 +19,17 @@ server <- function(input, output, session) {
     })
 
     observeEvent(input$refresh_data, {
-      res = GET("http://localhost:8000/send_data")
+      res = GET("http://plumber:8000/send_data")
       hist_data(fromJSON(rawToChar(res$content)))
     }, ignoreInit = TRUE, ignoreNULL = TRUE)
+
+    output$tekscior <- renderText({
+      paste0("bar: ", hist_data()$data)
+    })
+
+    output$tekscior2 <- renderText({
+      paste0("bar: ", input$refresh_data)
+    })
 
     output$histPlot <- renderPlot({
       req(hist_data())

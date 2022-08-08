@@ -5,9 +5,14 @@ RUN apt-get update \
     libxml2-dev \
     libz-dev \
     libgit2-dev \
-    tar
-COPY . /shiny_app
+    tar \
+    libudunits2-dev\
+    libproj-dev\
+    libgdal-dev\
+    libxt6
+
+COPY . /kubeRnetes
 RUN R -e "install.packages(c('shiny', 'httr', 'jsonlite'))"
 EXPOSE 3838
 
-CMD ["R", "-e", "shiny::runApp('/shiny_app/', port = 3838L, host = '0.0.0.0')"]
+CMD ["R", "-e", "shiny::runApp('/kubeRnetes/shiny_app/', port = 3838L, host = '0.0.0.0')"]
