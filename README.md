@@ -8,10 +8,8 @@ We are tagging with version 0.1 to avoid Always pulling from repo with the `late
 
 ## Run the cluster locally
 
-`kubectl apply -f deployment_shiny.yml`
+`kubectl apply -f shiny-plumber-app.yml`
 
-`apply -f svc-local_expose_shiny.yml`
+to cleanup do:
 
-`kubectl apply -f pod_plumber.yml`
-
-`kubectl apply -f svc_plumber.yml`
+`kubectl delete -f shiny-plumber-app.yml`
